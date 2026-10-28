@@ -314,12 +314,23 @@ const GIFTS = [
     url: "https://www.yate.cz/yate-yoga-mat-universe/",
     image: "img/yate-yoga-mat-universe.webp",
     emoji: "🧘"
+  },
+  {
+    id: "ponozky-voxx-stabil",
+    name: "VoXX zimní thermo ponožky Merino Stabil",
+    meta: "černé · velikost 39–42",
+    why: "Studené nohy umí zkazit i tu nejkrásnější noc pod širákem. Tyhle merino ponožky hřejí, nekoušou a díky stříbru vydrží i vícedenní trek bez praní.",
+    price: 265,
+    url: "https://fuski.cz/detail/ponozky-zimni-thermo-z-merino-stabil-se-stribrem-cerne",
+    image: "img/ponozky.webp",
+    emoji: "🧦"
   }
 ];
 
 /* =========================================================
    Odtud dál už nic upravovat nemusíš
    ========================================================= */
+GIFTS.sort((a, b) => a.price - b.price);   // od nejlevnějšího
 const DEMO = !SUPABASE_URL || !SUPABASE_ANON_KEY;
 const NO_SPOILERS = location.hash === "#vendy";   // pro mě: nevidím, co je zabrané
 let claimed = new Set();
