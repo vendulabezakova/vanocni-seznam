@@ -118,6 +118,28 @@
   .card:not(.claimed) .ribbon{display:none}
 
   .empty{text-align:center;color:var(--muted);padding:40px 0;grid-column:1/-1}
+
+  /* ---------- příspěvek na spacák ---------- */
+  .fund{
+    position:relative;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+    background:var(--green);color:#f6f0e4;border-radius:var(--radius);box-shadow:var(--shadow);
+    padding:40px 44px;margin:8px 0 48px;overflow:hidden
+  }
+  .fund::before{
+    content:"";position:absolute;inset:10px;border:1.5px dashed rgba(196,154,44,.55);
+    border-radius:calc(var(--radius) - 6px);pointer-events:none
+  }
+  .fund-kicker{letter-spacing:.32em;text-transform:uppercase;font-size:12px;font-weight:600;color:var(--gold)}
+  .fund h2{font:800 clamp(28px,4.5vw,42px)/1.05 Fraunces,serif;margin:.3em 0 .45em;color:#fff;letter-spacing:-.01em}
+  .fund p{margin:0 0 .7em;max-width:520px;color:rgba(246,240,228,.88)}
+  .fund-qr{margin:0;width:220px;text-align:center}
+  .fund-qr img{display:block;width:100%;height:auto;background:#fff;padding:14px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .fund-qr figcaption{font-size:13px;line-height:1.45;margin-top:12px;color:rgba(246,240,228,.75)}
+  @media (max-width:640px){
+    .fund{grid-template-columns:1fr;padding:30px 24px;text-align:center}
+    .fund p{margin-left:auto;margin-right:auto}
+    .fund-qr{margin:0 auto}
+  }
   footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 40px}
   footer .hand{font-size:22px;color:var(--green)}
 
@@ -166,6 +188,19 @@
     </div>
   </div>
   <section class="grid" id="grid" aria-live="polite"></section>
+
+  <section class="fund" aria-labelledby="fundTitle">
+    <div class="fund-text">
+      <div class="fund-kicker">Hlavní přání</div>
+      <h2 id="fundTitle">Složte se mi na spacák 🏕️</h2>
+      <p>Lehčí na zádech, teplejší v noci. Takový spacák mi na trecích chybí nejvíc a sama bych ho odkládala ještě dlouho.</p>
+      <p>Příspěvkem jakékoli velikosti mi uděláte obrovskou radost.</p>
+    </div>
+    <figure class="fund-qr">
+      <img src="img/qr-spacak.png" alt="QR kód pro platbu příspěvku na spacák" width="500" height="500">
+      <figcaption>Naskenuj QR kód v bankovní aplikaci, částku zadej podle sebe. Kdyby něco zbylo, půjde to na další výbavu na treky.</figcaption>
+    </figure>
+  </section>
 </main>
 
 <footer>
@@ -231,6 +266,26 @@ const GIFTS = [
     url: "https://www.martinus.cz/4014417-atomove-navyky-workbook/kniha",
     image: "img/atomove-navyky.webp",
     emoji: "📘"
+  },
+  {
+    id: "barnangen-oil-intense",
+    name: "Barnängen sprchový gel Oil Intense",
+    meta: "Barnängen · sprchový gel s oleji",
+    why: "Moje kůže v zimě volá o pomoc. Tenhle gel s oleji pečuje o kůži, kterou zima a vítr vysušují, a krásně voní.",
+    price: 129,
+    url: "https://www.dm.cz/p/d/1721598/barnangen-sprchovy-gel-oil-intense",
+    image: "img/shower-cream-oil-intense.webp",
+    emoji: "🧴"
+  },
+  {
+    id: "yate-yoga-mat-universe",
+    name: "Jógamatka Yate Universe",
+    meta: "Yate · podložka na jógu",
+    why: "Moje současná podložka je ještě po mamce. Sloužila věrně, ale už se loupe a své nejlepší roky má za sebou. Je čas ji poslat do zaslouženého jógového důchodu.",
+    price: 670,
+    url: "https://www.yate.cz/yate-yoga-mat-universe/",
+    image: "img/yate-yoga-mat-universe.webp",
+    emoji: "🧘"
   }
 ];
 
