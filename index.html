@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vendy · Vánoční přání</title>
+<meta name="description" content="Pár věcí, které by mi udělaly radost. Zaber dárek – nikdo neuvidí kdo.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,500;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f0e4; --card:#fffdf8; --ink:#1d2a22; --muted:#6b6a5f;
+    --green:#1f4430; --green-2:#2f6046; --red:#b4322a; --gold:#c49a2c;
+    --line:#e6dccb; --shadow:0 1px 2px rgba(40,30,10,.06),0 8px 24px rgba(40,30,10,.08);
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--paper);
+    background-image:radial-gradient(rgba(120,90,40,.05) 1px,transparent 1px);
+    background-size:14px 14px;
+    color:var(--ink); font:16px/1.55 Inter,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+
+  /* ---------- header ---------- */
+  header{position:relative;overflow:hidden;text-align:center;padding:56px 0 28px}
+  .kicker{letter-spacing:.32em;text-transform:uppercase;font-size:12px;color:var(--muted);font-weight:600}
+  h1{
+    font-family:Fraunces,serif;font-weight:800;color:var(--green);
+    font-size:clamp(40px,8vw,84px);line-height:.95;margin:.2em 0 .15em;letter-spacing:-.02em
+  }
+  h1 em{font-style:normal;color:var(--red)}
+  .lead{max-width:560px;margin:0 auto;color:var(--muted)}
+  .hand{font-family:Caveat,cursive}
+  .how{
+    display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:26px 0 0;padding:0;list-style:none
+  }
+  .how li{
+    background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;font-size:14px;box-shadow:var(--shadow)
+  }
+  .how b{color:var(--red);margin-right:4px}
+  .snow{position:absolute;inset:0;pointer-events:none}
+  .snow span{position:absolute;top:-20px;color:var(--gold);opacity:.55;animation:fall linear infinite}
+  @keyframes fall{to{transform:translateY(420px) rotate(180deg)}}
+  @media (prefers-reduced-motion:reduce){.snow{display:none}}
+
+  /* ---------- toolbar ---------- */
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0 22px}
+  .count{font-size:14px;color:var(--muted)}
+  .count strong{color:var(--ink)}
+  .chips{display:flex;gap:6px}
+  .chip{
+    border:1px solid var(--line);background:var(--card);color:var(--ink);
+    padding:7px 14px;border-radius:999px;font:500 14px Inter,sans-serif;cursor:pointer
+  }
+  .chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+  .banner{
+    background:#fff6d6;border:1px dashed var(--gold);border-radius:12px;
+    padding:10px 14px;font-size:14px;margin-bottom:16px;text-align:center
+  }
+
+  /* ---------- grid & cards ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;padding-bottom:40px}
+  .card{
+    position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease
+  }
+  .card:hover{transform:translateY(-3px) rotate(-.3deg);box-shadow:0 2px 4px rgba(40,30,10,.06),0 16px 36px rgba(40,30,10,.12)}
+  .num{
+    position:absolute;top:12px;left:12px;z-index:2;width:32px;height:32px;border-radius:50%;
+    background:var(--gold);color:#fff;display:grid;place-items:center;
+    font:800 15px Fraunces,serif;box-shadow:0 2px 6px rgba(0,0,0,.15)
+  }
+  .media{aspect-ratio:4/3;background:#f1ece2;display:grid;place-items:center;overflow:hidden}
+  .media img{width:100%;height:100%;object-fit:contain;padding:14px;transition:transform .4s ease}
+  .card:hover .media img{transform:scale(1.04)}
+  .placeholder{font-size:64px;line-height:1}
+  .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .title{font:800 20px/1.2 Fraunces,serif;margin:0;color:var(--green)}
+  .meta{font-size:13px;color:var(--muted);margin:0}
+  .why{
+    font-family:Caveat,cursive;font-size:21px;line-height:1.2;color:#5a4a32;margin:4px 0 6px;
+    padding-left:12px;border-left:3px solid var(--gold)
+  }
+  .foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+  .price{font:800 22px Fraunces,serif}
+  .price small{font:500 12px Inter,sans-serif;color:var(--muted);margin-right:4px}
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    min-height:44px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--green);
+    font:600 14px Inter,sans-serif;text-decoration:none;cursor:pointer;transition:background .2s,transform .1s
+  }
+  .btn:active{transform:scale(.97)}
+  .btn-ghost{background:transparent;color:var(--green)}
+  .btn-ghost:hover{background:rgba(31,68,48,.06)}
+  .btn-main{background:var(--red);border-color:var(--red);color:#fff}
+  .btn-main:hover{background:#9c2a23}
+  .btn[disabled]{opacity:.55;cursor:not-allowed}
+  .mine{font-size:13px;color:var(--muted);text-align:center}
+  .mine button{background:none;border:0;color:var(--red);text-decoration:underline;cursor:pointer;font:inherit;padding:0}
+
+  /* claimed state */
+  .card.claimed .media img,.card.claimed .placeholder{filter:grayscale(1);opacity:.45}
+  .ribbon{
+    position:absolute;top:22px;right:-44px;z-index:2;transform:rotate(35deg);
+    background:var(--green);color:#fff;font:700 12px Inter,sans-serif;letter-spacing:.12em;
+    text-transform:uppercase;padding:6px 52px;box-shadow:0 2px 6px rgba(0,0,0,.18)
+  }
+  .card:not(.claimed) .ribbon{display:none}
+
+  .empty{text-align:center;color:var(--muted);padding:40px 0;grid-column:1/-1}
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 0 40px}
+  footer .hand{font-size:22px;color:var(--green)}
+
+  /* dialog */
+  dialog{border:0;border-radius:20px;padding:0;max-width:380px;width:calc(100% - 32px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+  dialog::backdrop{background:rgba(29,42,34,.45);backdrop-filter:blur(2px)}
+  .dlg{padding:26px 24px 22px;text-align:center;background:var(--card)}
+  .dlg .big{font-size:48px}
+  .dlg h2{font:800 22px Fraunces,serif;color:var(--green);margin:6px 0}
+  .dlg p{color:var(--muted);font-size:15px;margin:0 0 18px}
+  .dlg .actions{grid-template-columns:1fr 1fr}
+
+  .toast{
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120%);
+    background:var(--green);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;
+    box-shadow:var(--shadow);transition:transform .3s ease;z-index:50;max-width:calc(100% - 32px)
+  }
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  .burst{position:fixed;pointer-events:none;z-index:60;font-size:22px;animation:pop 1s ease-out forwards}
+  @keyframes pop{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="snow" id="snow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="kicker">Vendy · Vánoce 2026</div>
+    <h1>Co by mi <em>udělalo</em> radost</h1>
+    <p class="lead">Pár věcí, které opravdu využiju. Žádný stres pro vás, žádné šuplíkové dárky pro mě.</p>
+    <ol class="how">
+      <li><b>1</b>Vyber dárek</li>
+      <li><b>2</b>Klikni na „Zabírám“</li>
+      <li><b>3</b>Kup a zabal</li>
+    </ol>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="banner"></div>
+  <div class="bar">
+    <div class="count" id="count"></div>
+    <div class="chips" role="group" aria-label="Filtr">
+      <button class="chip" data-filter="all" aria-pressed="true">Vše</button>
+      <button class="chip" data-filter="free" aria-pressed="false">Jen volné</button>
+    </div>
+  </div>
+  <section class="grid" id="grid" aria-live="polite"></section>
+</main>
+
+<footer>
+  <div class="hand">Děkuju, že mě znáte 💚</div>
+  Kdo co zabral, neví nikdo – ani já.
+</footer>
+
+<dialog id="dlg">
+  <form method="dialog" class="dlg">
+    <div class="big">🎁</div>
+    <h2 id="dlgTitle">Zabrat dárek?</h2>
+    <p>Ostatní uvidí jen, že je zabraný. Kdo ho zabral, se nedozví nikdo.</p>
+    <div class="actions">
+      <button class="btn btn-ghost" value="cancel">Ještě ne</button>
+      <button class="btn btn-main" value="ok">Zabírám</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* =========================================================
+   1) NASTAVENÍ SUPABASE
+   Nech prázdné = demo režim (zabrání se ukládá jen v tomto prohlížeči).
+   ========================================================= */
+const SUPABASE_URL = "https://raypolckbakooevpyofw.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_lu65pNc2dmgtBWGUyeWkoQ_o-nNMnRY"; // veřejný anon / publishable klíč
+
+/* =========================================================
+   2) SEZNAM DÁRKŮ
+   id     = unikátní, bez mezer a diakritiky (neměnit, když už je dárek zabraný)
+   image  = URL obrázku nebo cesta k souboru v repu (např. "img/kalhotky.jpg"),
+            prázdné = zobrazí se emoji z pole "emoji"
+   ========================================================= */
+const GIFTS = [
+  {
+    id: "kalhotky-sensor",
+    name: "Sensor Coolmax Tech dámské kalhotky",
+    meta: "černé · velikost XL",
+    why: "Aby mi na horách nebyla zima ani tam, kam slunce nesvítí 🙈 Funkční prádlo, které hřeje i odvádí pot, i když se na hřebeni zastavím na svačinu.",
+    price: 499,
+    url: "https://www.sensor.cz/sensor-coolmax-tech-damske-kalhotky-cerna_z30804/#16896",
+    image: "",
+    emoji: "🏔️"
+  },
+  {
+    id: "prosteradlo-jersey",
+    name: "Jersey prostěradlo Classic",
+    meta: "černé · 160 × 200 cm",
+    why: "Moje prostěradla mají za sebou čtyři věrné roky a je to na nich znát. Dírky a žmolky se do snů nehodí, nové měkké jersey = sladší spaní.",
+    price: 449,
+    url: "https://www.mkluzkoviny.cz/jersey-prosteradlo-160-200-cm-cerna/",
+    image: "https://www.mkluzkoviny.cz/data/cache/thumb_1200-630-12/products/40521/a49a1719cd40dd1228de58e3c6c32dec/jersey_cerna1-1776003190.jpg?s=6a6e397eb237af3910a61916d18ffa69",
+    emoji: "🛏️"
+  },
+  {
+    id: "atomove-navyky-workbook",
+    name: "Atomové návyky – Workbook",
+    meta: "James Clear · pracovní sešit",
+    why: "Knihu jsem přečetla a čerpám z ní dodnes. Pracovní sešit mi pomůže přenést teorii do praxe a rozjet pár nových dobrých návyků.",
+    price: 348,
+    url: "https://www.martinus.cz/4014417-atomove-navyky-workbook/kniha",
+    image: "https://mrtns.sk/tovar/_l/3853/l3853931.jpg?v=17931655742",
+    emoji: "📘"
+  }
+];
+
+/* =========================================================
+   Odtud dál už nic upravovat nemusíš
+   ========================================================= */
+const DEMO = !SUPABASE_URL || !SUPABASE_ANON_KEY;
+const NO_SPOILERS = location.hash === "#vendy";   // pro mě: nevidím, co je zabrané
+let claimed = new Set();
+let filter = "all";
+let pendingId = null;
+
+const $ = s => document.querySelector(s);
+const fmt = n => new Intl.NumberFormat("cs-CZ").format(n) + " Kč";
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+const store = {
+  get(k){ try{ return localStorage.getItem(k) }catch{ return null } },
+  set(k,v){ try{ localStorage.setItem(k,v) }catch{} },
+  del(k){ try{ localStorage.removeItem(k) }catch{} }
+};
+const tokenKey = id => "gift-token:" + id;
+const newToken = () => (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36)) + "-" + Math.random().toString(36).slice(2);
+
+/* ---------- backend ---------- */
+async function rpc(fn, args = {}){
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
+    method: "POST",
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(args)
+  });
+  if(!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+const api = {
+  async list(){
+    if(DEMO) return JSON.parse(store.get("demo-claims") || "[]");
+    const rows = await rpc("get_claimed");
+    return rows.map(r => typeof r === "string" ? r : r.gift_id);
+  },
+  async claim(id, token){
+    if(DEMO){
+      const s = new Set(await api.list());
+      if(s.has(id)) return false;
+      s.add(id); store.set("demo-claims", JSON.stringify([...s])); return true;
+    }
+    return rpc("claim_gift", { p_gift_id: id, p_token: token });
+  },
+  async unclaim(id, token){
+    if(DEMO){
+      const s = new Set(await api.list()); s.delete(id);
+      store.set("demo-claims", JSON.stringify([...s])); return true;
+    }
+    return rpc("unclaim_gift", { p_gift_id: id, p_token: token });
+  }
+};
+
+/* ---------- render ---------- */
+function render(){
+  const grid = $("#grid");
+  const list = GIFTS.filter(g => filter === "all" || NO_SPOILERS || !claimed.has(g.id));
+  const free = GIFTS.filter(g => !claimed.has(g.id)).length;
+
+  $("#count").innerHTML = NO_SPOILERS
+    ? `<strong>${GIFTS.length}</strong> přání`
+    : `<strong>${GIFTS.length}</strong> přání · <strong>${free}</strong> ještě volných`;
+
+  if(!list.length){
+    grid.innerHTML = `<div class="empty"><div class="hand" style="font-size:28px">Všechno je zabrané! 🎉</div>Díky, jste nejlepší.</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(g => {
+    const n = GIFTS.indexOf(g) + 1;
+    const isClaimed = !NO_SPOILERS && claimed.has(g.id);
+    const isMine = isClaimed && store.get(tokenKey(g.id));
+    const media = g.image
+      ? `<img src="${esc(g.image)}" alt="${esc(g.name)}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'placeholder',textContent:'${g.emoji || "🎁"}'}))">`
+      : `<span class="placeholder" aria-hidden="true">${g.emoji || "🎁"}</span>`;
+    let claimUI;
+    if(NO_SPOILERS) claimUI = `<button class="btn btn-main" disabled title="Režim bez spoilerů">🙈 Tajné</button>`;
+    else if(isClaimed) claimUI = `<button class="btn btn-main" disabled>Zabráno ✓</button>`;
+    else claimUI = `<button class="btn btn-main" data-claim="${esc(g.id)}">Zabírám 🎁</button>`;
+
+    return `
+    <article class="card ${isClaimed ? "claimed" : ""}">
+      <span class="num">${n}</span>
+      <span class="ribbon">Zabráno</span>
+      <div class="media">${media}</div>
+      <div class="body">
+        <h3 class="title">${esc(g.name)}</h3>
+        ${g.meta ? `<p class="meta">${esc(g.meta)}</p>` : ""}
+        <p class="why">${esc(g.why)}</p>
+        <div class="foot">
+          <div class="price"><small>cca</small>${fmt(g.price)}</div>
+          <div class="actions">
+            <a class="btn btn-ghost" href="${esc(g.url)}" target="_blank" rel="noopener">Do e-shopu ↗</a>
+            ${claimUI}
+          </div>
+          ${isMine ? `<div class="mine">Zabral/a jsi ho ty · <button data-unclaim="${esc(g.id)}">zrušit</button></div>` : ""}
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+/* ---------- actions ---------- */
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 2800);
+}
+function burst(x, y){
+  const items = ["🎁","✨","❄️","⭐","🎄","💚"];
+  for(let i = 0; i < 16; i++){
+    const s = document.createElement("span");
+    s.className = "burst"; s.textContent = items[i % items.length];
+    s.style.left = x + "px"; s.style.top = y + "px";
+    s.style.setProperty("--dx", (Math.random() * 240 - 120) + "px");
+    s.style.setProperty("--dy", (Math.random() * -200 - 40) + "px");
+    s.style.setProperty("--r", (Math.random() * 360) + "deg");
+    document.body.appendChild(s); setTimeout(() => s.remove(), 1000);
+  }
+}
+
+let lastClick = {x: innerWidth / 2, y: innerHeight / 2};
+document.addEventListener("click", async e => {
+  lastClick = {x: e.clientX, y: e.clientY};
+
+  const c = e.target.closest("[data-claim]");
+  if(c){
+    pendingId = c.dataset.claim;
+    $("#dlgTitle").textContent = "Zabrat „" + GIFTS.find(g => g.id === pendingId).name + "“?";
+    $("#dlg").showModal();
+    return;
+  }
+  const u = e.target.closest("[data-unclaim]");
+  if(u){
+    const id = u.dataset.unclaim;
+    try{
+      const ok = await api.unclaim(id, store.get(tokenKey(id)));
+      if(ok){ store.del(tokenKey(id)); claimed.delete(id); render(); toast("Zabrání zrušeno, dárek je zase volný."); }
+      else toast("Tohle zabrání už zrušit nejde.");
+    }catch(err){ console.error(err); toast("Něco se pokazilo, zkus to prosím znovu."); }
+    return;
+  }
+  const f = e.target.closest("[data-filter]");
+  if(f){
+    filter = f.dataset.filter;
+    document.querySelectorAll("[data-filter]").forEach(b => b.setAttribute("aria-pressed", b === f));
+    render();
+  }
+});
+
+$("#dlg").addEventListener("close", async () => {
+  if($("#dlg").returnValue !== "ok" || !pendingId) return;
+  const id = pendingId; pendingId = null;
+  const {x, y} = lastClick;
+  const token = newToken();
+  try{
+    const ok = await api.claim(id, token);
+    if(ok){
+      store.set(tokenKey(id), token); claimed.add(id); render(); burst(x, y);
+      toast("Zabráno! Teď už jen koupit a zabalit 🎄");
+    }else{
+      claimed = new Set(await api.list()); render();
+      toast("Tenhle mezitím zabral někdo jiný – vyber si jiný 🙂");
+    }
+  }catch(err){ console.error(err); toast("Něco se pokazilo, zkus to prosím znovu."); }
+});
+
+/* ---------- snow ---------- */
+(() => {
+  const el = $("#snow"); const flakes = ["❄","✦","❅","·"];
+  for(let i = 0; i < 18; i++){
+    const s = document.createElement("span");
+    s.textContent = flakes[i % flakes.length];
+    s.style.left = Math.random() * 100 + "%";
+    s.style.fontSize = 10 + Math.random() * 14 + "px";
+    s.style.animationDuration = 7 + Math.random() * 9 + "s";
+    s.style.animationDelay = -Math.random() * 12 + "s";
+    el.appendChild(s);
+  }
+})();
+
+/* ---------- start ---------- */
+(async () => {
+  if(NO_SPOILERS) $("#banner").innerHTML = `<div class="banner">🙈 Režim bez spoilerů – nevidíš, co je zabrané.</div>`;
+  else if(DEMO) $("#banner").innerHTML = `<div class="banner">Demo režim – zabrání se ukládá jen v tomto prohlížeči. Po doplnění Supabase klíčů bude sdílené.</div>`;
+  try{ claimed = new Set(await api.list()); }catch(err){ console.error(err); toast("Nepodařilo se načíst, co je zabrané."); }
+  render();
+})();
+</script>
+</body>
+</html>
