@@ -80,14 +80,14 @@
     font:800 15px Fraunces,serif;box-shadow:0 2px 6px rgba(0,0,0,.15)
   }
   .media{aspect-ratio:4/3;background:#f1ece2;display:grid;place-items:center;overflow:hidden}
-  .media img{width:100%;height:100%;object-fit:contain;padding:14px;transition:transform .4s ease}
+  .media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
   .card:hover .media img{transform:scale(1.04)}
   .placeholder{font-size:64px;line-height:1}
   .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
   .title{font:800 20px/1.2 Fraunces,serif;margin:0;color:var(--green)}
   .meta{font-size:13px;color:var(--muted);margin:0}
   .why{
-    font-family:Caveat,cursive;font-size:21px;line-height:1.2;color:#5a4a32;margin:4px 0 6px;
+    font:400 15px/1.5 Inter,system-ui,sans-serif;color:#5a4a32;margin:4px 0 6px;
     padding-left:12px;border-left:3px solid var(--gold)
   }
   .foot{margin-top:auto;display:flex;flex-direction:column;gap:10px}
@@ -209,7 +209,7 @@ const GIFTS = [
     why: "Aby mi na horách nebyla zima ani tam, kam slunce nesvítí 🙈 Funkční prádlo, které hřeje i odvádí pot, i když se na hřebeni zastavím na svačinu.",
     price: 499,
     url: "https://www.sensor.cz/sensor-coolmax-tech-damske-kalhotky-cerna_z30804/#16896",
-    image: "",
+    image: "img/kalhotky-sensor.jpg",
     emoji: "🏔️"
   },
   {
@@ -219,7 +219,7 @@ const GIFTS = [
     why: "Moje prostěradla mají za sebou čtyři věrné roky a je to na nich znát. Dírky a žmolky se do snů nehodí, nové měkké jersey = sladší spaní.",
     price: 449,
     url: "https://www.mkluzkoviny.cz/jersey-prosteradlo-160-200-cm-cerna/",
-    image: "https://www.mkluzkoviny.cz/data/cache/thumb_1200-630-12/products/40521/a49a1719cd40dd1228de58e3c6c32dec/jersey_cerna1-1776003190.jpg?s=6a6e397eb237af3910a61916d18ffa69",
+    image: "img/prosteradlo.avif",
     emoji: "🛏️"
   },
   {
@@ -229,7 +229,7 @@ const GIFTS = [
     why: "Knihu jsem přečetla a čerpám z ní dodnes. Pracovní sešit mi pomůže přenést teorii do praxe a rozjet pár nových dobrých návyků.",
     price: 348,
     url: "https://www.martinus.cz/4014417-atomove-navyky-workbook/kniha",
-    image: "https://mrtns.sk/tovar/_l/3853/l3853931.jpg?v=17931655742",
+    image: "img/atomove-navyky.png",
     emoji: "📘"
   }
 ];
