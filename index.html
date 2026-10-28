@@ -175,11 +175,12 @@
   .dlg .actions{grid-template-columns:1fr 1fr}
 
   .toast{
-    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120%);
+    position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(calc(100% + 48px));
     background:var(--green);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;
-    box-shadow:var(--shadow);transition:transform .3s ease;z-index:50;max-width:calc(100% - 32px)
+    box-shadow:var(--shadow);transition:transform .3s ease,visibility .3s;z-index:50;max-width:calc(100% - 32px);
+    visibility:hidden
   }
-  .toast.show{transform:translateX(-50%) translateY(0)}
+  .toast.show{transform:translateX(-50%) translateY(0);visibility:visible}
   .burst{position:fixed;pointer-events:none;z-index:60;font-size:22px;animation:pop 1s ease-out forwards}
   @keyframes pop{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
 </style>
